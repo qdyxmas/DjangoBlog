@@ -1,0 +1,73 @@
+<html>
+
+<head>
+    <title>json数据</title>
+    <!-- 引入 jQuery -->
+    <script src="https://qdyxmas.com/static/CACHE/js/jquery.min.js"></script>
+    <script src="https://qdyxmas.com/static/CACHE/js/renderjson.js"></script>
+    <style>
+        a {
+            color: red;
+            font-size: 18px;
+            font-style: italic;
+            text-decoration: none;
+        }
+
+        .key {
+            color: #8c6325;
+            font-size: 18px
+        }
+
+        .syntax {
+            color: #57b73b;
+            font-size: 18px
+        }
+
+        .string {
+            color: #57b73b;
+            font-size: 18px
+        }
+
+        .boolean {
+            color: #57b73b;
+            font-size: 18px
+        }
+
+        .number {
+            color: #57b73b;
+            font-size: 18px
+        }
+
+        .keyword {
+            color: #57b73b;
+            font-size: 18px
+        }
+
+        .object.syntax {
+            font-size: 14px;
+            line-height: 24px;
+            color: #909399
+        }
+
+        .array.syntax {
+            font-size: 14px;
+            line-height: 24px;
+            color: #909399
+        }
+    </style>
+
+</head>
+
+<body>
+    <h3>格式化数据为(方便查看):</h3>
+    <div id="container"></div>
+    <div> <label>
+            <h3>原始数据为(方便拷贝):</h3>
+        </label><textarea rows="20" cols="100">{{JSONDATA}}</textarea></div>
+</body>
+<script>
+    var DICT = {{ JSONDATA| safe}};
+    $("#container").append($(renderjson(DICT)));
+</script>
+
+</html>

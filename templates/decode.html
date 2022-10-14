@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>脚本转换</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <style type="text/css">
+        textarea {
+            width: 50%;
+            top: 0px;
+            padding: 0px;
+            /** 必须设置为 content-box !!! */
+            box-sizing: content-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+            max-height: 100%;
+            font-family: Sans-serif;
+            line-height: 1.5em;
+        }
+
+        #nav {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 360px;
+            /* Width of navigation frame */
+            height: 100%;
+            overflow: hidden;
+            /* Disables scrollbars on the navigation frame. To enable scrollbars, change "hidden" to "scroll" */
+            background: #eee;
+        }
+
+        main {
+            position: fixed;
+            top: 0;
+            left: 360px;
+            /* Set this to the width of the navigation frame */
+            right: 0;
+            bottom: 0;
+            overflow: auto;
+            background: #fff;
+        }
+
+        .innertube {
+            margin: 15px;
+            /* Provides padding for the content */
+        }
+
+        p {
+            color: #555;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul a {
+            color: darkgreen;
+            text-decoration: none;
+        }
+
+        /*IE6 fix*/
+        * html body {
+            padding: 0 0 0 230px;
+            /* Set the last value to the width of the navigation frame */
+        }
+
+        * html main {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+
+    <script>
+        function decode() {
+
+            document.frm.action = "/decode";
+
+            document.frm.submit();
+
+        }
+        function encode() {
+
+            document.frm.action = "/encode";
+
+            document.frm.submit();
+        }
+        function wssdecode() {
+
+            document.frm.action = "/wssdecode";
+
+            document.frm.submit();
+        }
+
+        function decodeid() {
+
+            document.frm.action = "/id_decode";
+
+            document.frm.submit();
+        }
+        function encodeid() {
+
+            document.frm.action = "/id_encode";
+
+            document.frm.submit();
+        }
+
+        function savejson() {
+            document.frm.action = "/save_json";
+            document.frm.submit();
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <main>
+        <div class="innertube">
+            <form name="frm" method="post">
+                {% csrf_token %}
+                <h1>输入信息:</h1>
+                <textarea rows="20" name="input_data">{{r.input_data}}</textarea>
+                <br>
+                <input type="button" onclick="encode()" value="AES加密" />
+                <input type="button" onclick="decode()" value="AES解密" />
+                <input type="button" onclick="wssdecode()" value="wss解密" />
+                <input type="button" onclick="encodeid()" value="ID加密" />
+                <input type="button" onclick="decodeid()" value="ID解密" />
+                <h1>输出结果:</h1>
+                <textarea rows="20" name="output_data">{{r.output_data}}</textarea>
+                <br />
+                <input type="button" onclick="savejson()" value="打开JSON分享链接" />
+            </form>
+            <a href="https://json.im/bigjson/index.html" target="_blank">json解析链接</a>
+        </div>
+    </main>
+
+</body>
+
+</html>

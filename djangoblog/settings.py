@@ -36,7 +36,7 @@ TESTING = len(sys.argv) > 1 and sys.argv[1] == 'test'
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ['*', '127.0.0.1', 'example.com']
 # django 4.0新增配置
-CSRF_TRUSTED_ORIGINS = ['http://example.com']
+CSRF_TRUSTED_ORIGINS = ['https://qdyxmas.com','http://qdyxmas.com']
 # Application definition
 
 
@@ -58,7 +58,8 @@ INSTALLED_APPS = [
     'oauth',
     'servermanager',
     'owntracks',
-    'compressor'
+    'compressor',
+    'jsondata'
 ]
 
 MIDDLEWARE = [
@@ -104,9 +105,9 @@ WSGI_APPLICATION = 'djangoblog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('DJANGO_MYSQL_DATABASE') or 'djangoblog',
+        'NAME': os.environ.get('DJANGO_MYSQL_DATABASE') or 'blog',
         'USER': os.environ.get('DJANGO_MYSQL_USER') or 'root',
-        'PASSWORD': os.environ.get('DJANGO_MYSQL_PASSWORD') or 'djangoblog_123',
+        'PASSWORD': os.environ.get('DJANGO_MYSQL_PASSWORD') or '123456',
         'HOST': os.environ.get('DJANGO_MYSQL_HOST') or '127.0.0.1',
         'PORT': int(
             os.environ.get('DJANGO_MYSQL_PORT') or 3306),
@@ -143,7 +144,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+#USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
@@ -189,14 +190,6 @@ CACHES = {
         'LOCATION': 'unique-snowflake',
     }
 }
-# 使用redis作为缓存
-if os.environ.get("DJANGO_REDIS_URL"):
-    CACHES = {
-        'default': {
-            'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-            'LOCATION': f'redis://{os.environ.get("DJANGO_REDIS_URL")}',
-        }
-    }
 
 SITE_ID = 1
 BAIDU_NOTIFY_URL = os.environ.get('DJANGO_BAIDU_NOTIFY_URL') \

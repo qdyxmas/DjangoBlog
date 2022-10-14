@@ -11,6 +11,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
+from rest_framework.decorators import api_view
 
 from blog.models import Article, Category, Tag, Links, LinkShowType
 from comments.forms import CommentForm

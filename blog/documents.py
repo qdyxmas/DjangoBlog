@@ -185,7 +185,7 @@ class ArticleDocumentManager():
                 body=article.body,
                 title=article.title,
                 author={
-                    'nickname': article.author.username,
+                    'nikename': article.author.username,
                     'id': article.author.id},
                 category={
                     'name': article.category.name,

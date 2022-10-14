@@ -21,6 +21,7 @@ from django.urls import include
 
 from djangoblog.admin_site import admin_site
 from djangoblog.feeds import DjangoBlogFeed
+from djangoblog import views
 from djangoblog.sitemap import StaticViewSitemap, ArticleSiteMap, CategorySiteMap, TagSiteMap, UserSiteMap
 
 sitemaps = {
@@ -48,7 +49,15 @@ urlpatterns = [
                   re_path(r'^rss/$', DjangoBlogFeed()),
                   re_path(r'^search', include('haystack.urls'), name='search'),
                   re_path(r'', include('servermanager.urls', namespace='servermanager')),
-                  re_path(r'', include('owntracks.urls', namespace='owntracks'))
+                  re_path(r'', include('owntracks.urls', namespace='owntracks')),
+                  re_path(r'^id_decode', views.id_decode),
+                  re_path(r'^id_encode', views.id_encode),
+                  re_path(r'^decode', views.decode),
+                  re_path(r'^encode', views.encode),
+                  re_path(r'^wssdecode', views.wssdecode),
+                  re_path(r'^sms', views.sms),
+                  re_path(r'^save_json', views.save_json),
+                  re_path(r'^get_json', views.get_json),
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

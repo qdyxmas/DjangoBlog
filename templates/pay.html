@@ -1,0 +1,14 @@
+<html><head>
+{% if SMS_DATA %}
+ <meta charset="utf-8" http-equiv="refresh" content="{{ SMS_DATA }}"	>
+ {% endif %}
+	<title>短信发送</title>
+<style> 
+body{text-align:center} 
+</style> 
+</head>
+<body>
+{% if ERROR_DATA %}
+{{ERROR_DATA}}
+{% endif %}
+</body></html>
